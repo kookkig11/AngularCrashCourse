@@ -4,10 +4,15 @@
 <!-- Loop Array -->
 <ul>
   <li *ngFor="let item of todos">
-    {{ item }}
+    <!-- [checked] :: push value completed on checkbox -->
+    <input type="checkbox"
+           [checked]="item.completed"
+           (change)="item.completed = !item.completed">
+    <!-- item | json :: show json string -->
+    {{ item.title }}  (completed :  {{ item.completed }})
   </li>
 </ul>
 
-<p>LIKE : {{ count }}</p>
+<p *ngIf="count > 0">LIKE : {{ count }}</p>
 <button (click)="clickLike()">Like</button>
 <button (click)="clickUnLike()">UnLike</button>
