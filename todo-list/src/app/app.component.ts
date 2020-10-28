@@ -15,7 +15,12 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.todos = this.service.getTodoList();
+    // .subscribe() for Observable
+    this.service.getTodoList().subscribe((todoList) => {
+      this.todos = todoList;
+    });
+
+    // this.todos = this.service.getTodoList();
   }
   
   count = 0;
