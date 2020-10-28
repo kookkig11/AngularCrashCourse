@@ -1,32 +1,22 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { TodoService } from './todo.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'Todo List';
-  todos : Todo[] = [
-    {
-      userId : 1,
-      id : 1,
-      title : 'Todo 1',
-      completed : true
-    },
-    {
-      userId : 2,
-      id : 2,
-      title : 'Todo 2',
-      completed : false
-    },
-    {
-      userId : 3,
-      id : 3,
-      title : 'Todo 3',
-      completed : false
-    }
-  ];
+  todos : Todo[] = [];
+
+  // TypeScript can make field use on this class :: get private / public
+  constructor(private service : TodoService) {
+  }
+
+  ngOnInit(): void {
+    this.todos = this.service.getTodoList();
+  }
   
   count = 0;
   clickLike() : void {
@@ -37,7 +27,8 @@ export class AppComponent {
   }
 }
 
-interface Todo {
+// export for use other file
+export interface Todo {
   userId : number;
   id : number;
   title : string;
