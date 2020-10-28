@@ -8,6 +8,9 @@ import { TodoService } from './todo.service';
 })
 export class AppComponent implements OnInit {
   title = 'Todo List';
+
+  newTodo : string = "New Item";
+
   todos : Todo[] = [];
 
   // TypeScript can make field use on this class :: get private / public
@@ -21,6 +24,14 @@ export class AppComponent implements OnInit {
     });
 
     // this.todos = this.service.getTodoList();
+  }
+
+  addNewItem() {
+    console.log('add');
+  }
+
+  onKeyup(event) {
+    this.newTodo = event.target.value;
   }
   
   count = 0;
