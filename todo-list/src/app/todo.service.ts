@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Todo } from './app.component';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -27,9 +29,13 @@ export class TodoService {
     }
   ];
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
-  getTodoList() : Todo[] {
-    return this.todos;
+  getTodoList() : Observable<Todo[]> {
+    // request data from server :: GET
+    const url = 'https://jsonplaceholder.typicode.com/todos?userId=1';
+    return this.http.get<Todo[]>(url);
+
+    // return this.todos;
   }
 }
