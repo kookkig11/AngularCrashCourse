@@ -5,8 +5,8 @@
        [value]="newTodo"
        (keyup)="onKeyup($event)"> -->
 <input type="text"
-       [(ngModel)]="newTodo">
- :: {{ newTodo }}
+       [(ngModel)]="newTodo"
+       (keyup.enter)="addNewItem()">
 
 <!-- Loop Array -->
 <ul>

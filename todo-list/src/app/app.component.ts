@@ -15,6 +15,8 @@ export class AppComponent implements OnInit {
 
   // TypeScript can make field use on this class :: get private / public
   constructor(private service : TodoService) {
+    // private service : TodoService,
+    // private userService : UserService,
   }
 
   ngOnInit(): void {
@@ -26,8 +28,16 @@ export class AppComponent implements OnInit {
     // this.todos = this.service.getTodoList();
   }
 
-  addNewItem() {
-    console.log('add');
+  addNewItem() : void {
+    const todoItem : Todo = {
+      userId : 1,
+      title : this.newTodo, //from input textbox
+      completed : false,
+    };
+    this.service.addTodoItem(todoItem).subscribe(() => {
+      alert('Add todo success');
+      this.newTodo = '';
+    });
   }
 
   onKeyup(event) {
@@ -46,7 +56,7 @@ export class AppComponent implements OnInit {
 // export for use other file
 export interface Todo {
   userId : number;
-  id : number;
+  id? : number;
   title : string;
   completed : boolean;
 }

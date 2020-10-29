@@ -38,4 +38,9 @@ export class TodoService {
 
     // return this.todos;
   }
+
+  addTodoItem(item : Todo) : Observable<any> {
+    const url = 'https://jsonplaceholder.typicode.com/todos';
+    return this.http.post(url, item);
+  }
 }
